@@ -1,4 +1,4 @@
-FROM pihole/pihole:latest
+FROM pihole/pihole:master-buster
 
 ADD cloudflared /tmp
 
