@@ -1,5 +1,5 @@
 # pihole-with-DoH
-Official pihole docker with cloudflared DoH client. Use Cloudflare DoH service by default.
+Official pihole docker with Cloudflared DoH client to enable DNS-over-HTTPS. Use Cloudflare DoH service by default.
 
 ### Notes:
 * You can edit /etc/cloudflared/config.yml to add more services. I have experienced some connection issues with other services (including google) so have decided to leave them out. Nano is included for your convenience ;)
