@@ -1,17 +1,11 @@
-FROM testdasi/pihole-base-buster:latest
+FROM testdasi/pihole-base-buster-plus:latest
 
-# add cloudflared binary and config
+# add cloudflared config
 ADD cloudflared /tmp
-
-# install cloudflared
 RUN cd /tmp \
     && mkdir -p /etc/cloudflared \
     && cp -n ./config.yml /etc/cloudflared/ \
-    && rm -f ./config.yml \
-    && apt install ./cloudflared-stable-linux-amd64.deb \
-    && rm -f ./cloudflared-stable-linux-amd64.deb \
-    && useradd -s /usr/sbin/nologin -r -M cloudflared \
-    && chown cloudflared:cloudflared /usr/local/bin/cloudflared
+    && rm -f ./config.yml
 
 # run cloudflared as service
 RUN mkdir -p /etc/services.d/cloudflared \
