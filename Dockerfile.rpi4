@@ -1,0 +1,8 @@
+FROM testdasi/pihole-base-buster-plus:latest-rpi4
+
+# add cloudflared config
+ADD cloudflared /tmp
+
+COPY ./install.sh /
+RUN /bin/bash /install.sh \
+    && rm -f /install.sh
