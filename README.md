@@ -11,4 +11,8 @@ Official pihole docker with Cloudflared DoH client to enable DNS-over-HTTPS. Use
 * You can edit /etc/cloudflared/config.yml to add more services. I have experienced some connection issues with other services (including google) so have decided to leave them out. Nano is included for your convenience ;)
 * For docker parameters, refer to [official pihole docker readme](https://github.com/pi-hole/pi-hole)
 * Cloudflared client was obtained from [official site](https://developers.cloudflare.com/argo-tunnel/downloads)
+* If you like my work, [a donation to my burger fund](https://paypal.me/mersenne) is very much appreciated.
+
+[![Donate](https://raw.githubusercontent.com/testdasi/testdasi-unraid-repo/master/donate-button-small.png)](https://paypal.me/mersenne). 
+
 
