@@ -6,11 +6,8 @@ cd /tmp \
     && cp -n ./config.yml /etc/cloudflared/ \
     && rm -f ./config.yml
 
-# run cloudflared as service
-mkdir -p /etc/services.d/cloudflared \
-    && echo '#!/usr/bin/with-contenv bash' > /etc/services.d/cloudflared/run \
-    && echo 's6-echo "Starting cloudflared"' >> /etc/services.d/cloudflared/run \
-    && echo '/usr/local/bin/cloudflared --config /etc/cloudflared/config.yml' >> /etc/services.d/cloudflared/run \
-    && echo '#!/usr/bin/with-contenv bash' > /etc/services.d/cloudflared/finish \
-    && echo 's6-echo "Stopping cloudflared"' >> /etc/services.d/cloudflared/finish \
-    && echo 'killall -9 cloudflared' >> /etc/services.d/cloudflared/finish
+## Piggy-backing on Pihole service ##
+# Insert run lines below the call capsh comment
+sed -i "/^# Call capsh with the detected capabilities/a start-stop-daemon --start --background --name cloudflared --chdir \/config --exec \/usr\/local\/bin\/cloudflared -- --config \/etc\/cloudflared\/config.yml" /etc/s6-overlay/s6-rc.d/pihole-FTL/run
+# Insert finish lines above kill pihole
+sed -i "/^killall -15 pihole-FTL/i killall -15 cloudflared" /etc/s6-overlay/s6-rc.d/pihole-FTL/finish
