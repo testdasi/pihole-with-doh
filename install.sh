@@ -7,7 +7,5 @@ cd /tmp \
     && rm -f ./config.yml
 
 ## Piggy-backing on Pihole service ##
-# Insert run lines below the call capsh comment
-sed -i "/^# Call capsh with the detected capabilities/a start-stop-daemon --start --background --name cloudflared --chdir \/config --exec \/usr\/local\/bin\/cloudflared -- --config \/etc\/cloudflared\/config.yml" /etc/s6-overlay/s6-rc.d/pihole-FTL/run
-# Insert finish lines above kill pihole
-sed -i "/^killall -15 pihole-FTL/i killall -15 cloudflared" /etc/s6-overlay/s6-rc.d/pihole-FTL/finish
+sed -i "/^lighttpd /i start-stop-daemon --start --background --name cloudflared --chdir \/config --exec \/usr\/local\/bin\/cloudflared -- --config \/config\/cloudflared.yml" /etc/s6-overlay/s6-rc.d/lighttpd/run
+sed -i "/^killall -9 lighttpd/i killall cloudflared" /etc/s6-overlay/s6-rc.d/lighttpd/finish
